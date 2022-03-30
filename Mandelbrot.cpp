@@ -40,8 +40,6 @@ const char* fragment_shader_source = ""
 	"    color = vec4(iteration == max_iterations ? vec3(0.85, 0.99, 1.0) : palette(float(iteration) / float(max_iterations), vec3(0.0), vec3(0.59,0.55,0.75), vec3(0.1, 0.2, 0.3), vec3(0.75)), 1.0);\n"
     "}\n";
 
-const
-
 const size_t title_buffer_size = 128;
 const unsigned int stats_refresh_rate = 3;
 
@@ -162,7 +160,7 @@ GLuint process_shader(GLenum type, const char* source, GLuint length)
 	if (shader == 0) {
 		puts("Failed to create shader!");
 
-		return 0;
+		return EXIT_FAILURE;
 	}
 
 	glShaderSource(shader, 1, &source, NULL);
@@ -180,14 +178,14 @@ GLuint process_shader(GLenum type, const char* source, GLuint length)
 		if (error_message == NULL) {
 			puts("Failed to allocate buffer for error message!");
 
-			return 0;
+			return EXIT_FAILURE;
 		}
 
 		glGetShaderInfoLog(shader, error_message_length, NULL, error_message);
 		printf("Error message: %s\n", error_message);
 		free(error_message);
 
-		return 0;
+		return EXIT_FAILURE;
 	}
 
 	return shader;
@@ -339,7 +337,7 @@ int main()
 
 	glBindVertexArray(vao);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(screen_vertices), screen_vertices, GL_STATIC_DRAW);	
+	glBufferData(GL_ARRAY_BUFFER, sizeof(screen_vertices), screen_vertices, GL_STATIC_DRAW);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), NULL);
 	glEnableVertexAttribArray(0);
 
