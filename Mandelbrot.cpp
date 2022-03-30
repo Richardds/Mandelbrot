@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <cstdlib>
+#include <cmath>
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -83,7 +84,7 @@ public:
 	}
 
 	unsigned int getIterationsLimit() const {
-		return static_cast<unsigned int>(floor(this->iterations_limit));
+		return static_cast<unsigned int>(std::floor(this->iterations_limit));
 	}
 
 	void setX(double x) {
@@ -382,8 +383,8 @@ int main()
 			sync.last_interval = sync.current;
 
 			// Update title
-			sprintf_s(title, title_buffer_size, u8"Mandelbrot | FPS: %u @ %.03lf ms | X: %.016f | Y: %.016f | Iterations limit: %u | Scale: %.03e\0",
-				static_cast<unsigned int>(floor(1 / sync.delta)), sync.delta * 1000, set.getX(), set.getY(), set.getIterationsLimit(), set.getScale());
+			sprintf(title, "Mandelbrot | FPS: %u @ %.03lf ms | X: %.016f | Y: %.016f | Iterations limit: %u | Scale: %.03e",
+				static_cast<unsigned int>(std::floor(1 / sync.delta)), sync.delta * 1000, set.getX(), set.getY(), set.getIterationsLimit(), set.getScale());
 			glfwSetWindowTitle(window, title);
 		}
 	}
