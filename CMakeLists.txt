@@ -2,10 +2,10 @@ cmake_minimum_required(VERSION 3.16)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
-set(CMAKE_CXX_EXTENSIONS YES)
+set(CMAKE_CXX_EXTENSIONS NO)
 
 project(Mandelbrot VERSION 0.0.1
-        DESCRIPTION "OpenGL Mandelbrot example"
+        DESCRIPTION "OpenGL Mandelbrot demo"
         LANGUAGES CXX)
 
 find_package(OpenGL REQUIRED)
